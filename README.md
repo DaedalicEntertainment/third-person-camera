@@ -12,6 +12,11 @@ Sample code of the talk "Six Ingredients for a Dynamic Third-Person Camera" at U
 1. Create a HoatCameraModifierApplyVolumeModifications blueprint and add it to your camera manager.
 1. Add HoatCameraModificationVolumes to your levels as desired.
 
+# Pitch-To-Distance Curves
+
+1. Create a curve asset.
+1. Create a HoatCameraModifierApplyPitchCurves blueprint and add it to your camera manager.
+
 ##  License
 
 third-person-camera is dual-licensed:
