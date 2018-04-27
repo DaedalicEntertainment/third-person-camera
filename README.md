@@ -21,6 +21,12 @@ Sample code of the talk "Six Ingredients for a Dynamic Third-Person Camera" at U
 
 1. Create a HoatCameraModifierFocusWalkDirection blueprint and add it to your camera manager.
 
+# Keeping Line of Sight Preemptively
+
+1. Add a new collision trace channel (e.g. CameraRotateAround).
+1. Create a HoatCameraModifierKeepLineOfSightPreemptive blueprint, use your new trace channel, and add the modifier to your camera manager.
+1. Block the new trace channel for all objects in your level the camera should rotate around. Make sure to ignore the default Camera trace channel to prevent the spring arm from kicking in.
+
 ##  License
 
 third-person-camera is dual-licensed:
