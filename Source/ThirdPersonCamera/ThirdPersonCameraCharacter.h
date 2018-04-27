@@ -2,10 +2,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Camera/CameraActorInterface.h"
 #include "ThirdPersonCameraCharacter.generated.h"
 
 UCLASS(config=Game)
-class AThirdPersonCameraCharacter : public ACharacter
+class AThirdPersonCameraCharacter : public ACharacter, public ICameraActorInterface
 {
 	GENERATED_BODY()
 
@@ -26,6 +27,9 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
+
+	virtual AHoatCameraModificationVolume* GetCurrentCameraModificationVolume() const override;
+	virtual void SetCurrentCameraModificationVolume(AHoatCameraModificationVolume* InCurrentCameraModificationVolume) override;
 
 protected:
 
@@ -66,5 +70,8 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+private:
+	AHoatCameraModificationVolume* CurrentCameraModificationVolume;
 };
 

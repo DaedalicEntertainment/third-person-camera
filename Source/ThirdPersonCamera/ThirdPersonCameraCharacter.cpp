@@ -45,6 +45,16 @@ AThirdPersonCameraCharacter::AThirdPersonCameraCharacter()
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
 
+AHoatCameraModificationVolume* AThirdPersonCameraCharacter::GetCurrentCameraModificationVolume() const
+{
+	return CurrentCameraModificationVolume;
+}
+
+void AThirdPersonCameraCharacter::SetCurrentCameraModificationVolume(AHoatCameraModificationVolume* InCurrentCameraModificationVolume)
+{
+	CurrentCameraModificationVolume = InCurrentCameraModificationVolume;
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
