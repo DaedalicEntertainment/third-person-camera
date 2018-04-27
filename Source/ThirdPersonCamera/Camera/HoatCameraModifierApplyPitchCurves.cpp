@@ -2,8 +2,7 @@
 
 #include "Camera/CameraTypes.h"
 
-#include "Core/HoatPlayerCharacter.h"
-#include "Core/Camera/HoatPlayerCameraManager.h"
+#include "Camera/HoatPlayerCameraManager.h"
 
 UHoatCameraModifierApplyPitchCurves::UHoatCameraModifierApplyPitchCurves(
     const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
@@ -18,12 +17,6 @@ bool UHoatCameraModifierApplyPitchCurves::ModifyCamera(float DeltaTime, struct F
     AHoatPlayerCameraManager* cameraManager = Cast<AHoatPlayerCameraManager>(CameraOwner);
 
     if (!IsValid(cameraManager))
-    {
-        return false;
-    }
-
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(GetViewTarget());
-    if (!IsValid(playerCharacter))
     {
         return false;
     }

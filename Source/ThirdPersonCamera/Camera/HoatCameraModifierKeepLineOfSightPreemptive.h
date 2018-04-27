@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ThirdPersonCamera.h"
-#include "Core/Camera/HoatCameraModifier.h"
+#include "Camera/HoatCameraModifier.h"
 #include "Engine/EngineTypes.h"
 #include "HoatCameraModifierKeepLineOfSightPreemptive.generated.h"
 
@@ -10,7 +10,7 @@
  * Preemptively swings away from obstacles before they occlude the character.
  */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifierKeepLineOfSightPreemptive : public UHoatCameraModifier
+class UHoatCameraModifierKeepLineOfSightPreemptive : public UHoatCameraModifier
 {
     GENERATED_BODY()
 

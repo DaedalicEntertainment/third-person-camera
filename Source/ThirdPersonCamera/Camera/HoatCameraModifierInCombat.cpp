@@ -2,7 +2,7 @@
 
 #include "Camera/CameraTypes.h"
 
-#include "Core/HoatPlayerCharacter.h"
+#include "Camera/CombatActorInterface.h"
 
 UHoatCameraModifierInCombat::UHoatCameraModifierInCombat(
     const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
@@ -15,15 +15,15 @@ bool UHoatCameraModifierInCombat::ModifyCamera(float DeltaTime, struct FMinimalV
     Super::ModifyCamera(DeltaTime, InOutPOV);
 
     // Get player character.
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(GetViewTarget());
+	ICombatActorInterface* combatActor = Cast<ICombatActorInterface>(GetViewTarget());
 
-    if (!IsValid(playerCharacter))
+    if (!combatActor)
     {
         return false;
     }
 
     // Apply modifier.
-    AppyCameraTransition(playerCharacter->IsInCombat() ? Modifiers : FHoatCameraInfo(), TransitionTime, InOutPOV,
+    AppyCameraTransition(combatActor->IsInCombat() ? Modifiers : FHoatCameraInfo(), TransitionTime, InOutPOV,
                          DeltaTime);
     return false;
 }

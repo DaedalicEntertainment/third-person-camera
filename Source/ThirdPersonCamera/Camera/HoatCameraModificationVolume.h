@@ -2,7 +2,7 @@
 
 #include "ThirdPersonCamera.h"
 #include "Engine/TriggerVolume.h"
-#include "Core/Camera/HoatCameraInfo.h"
+#include "Camera/HoatCameraInfo.h"
 #include "HoatCameraModificationVolume.generated.h"
 
 /** Volume that modifies the camera of entering players. */

@@ -1,7 +1,7 @@
 #include "HoatCameraModifierFocusWalkDirection.h"
 
 #include "GameFramework/Actor.h"
-#include "Core/HoatPlayerCharacter.h"
+#include "Camera/PlayerCharacterInterface.h"
 
 
 UHoatCameraModifierFocusWalkDirection::UHoatCameraModifierFocusWalkDirection(const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
@@ -26,9 +26,9 @@ bool UHoatCameraModifierFocusWalkDirection::ProcessViewRotation(class AActor* Vi
         DirectionChangeCooldownRemaining -= DeltaTime;
     }
 
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(ViewTarget);
+	IPlayerCharacterInterface* playerCharacter = Cast<IPlayerCharacterInterface>(ViewTarget);
 
-    if (!IsValid(playerCharacter))
+    if (!playerCharacter)
     {
         return false;
     }

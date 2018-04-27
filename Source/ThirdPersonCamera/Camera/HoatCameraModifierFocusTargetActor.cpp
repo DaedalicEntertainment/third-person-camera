@@ -1,12 +1,12 @@
-#include "HoatCameraModifierFocusTactionTarget.h"
+#include "HoatCameraModifierFocusTargetActor.h"
 
 #include "Camera/PlayerCameraManager.h"
 #include "GameFramework/Actor.h"
 #include "Kismet/KismetMathLibrary.h"
 
-#include "Core/Tactions/TactionStateComponent.h"
+#include "Camera/TargetingActorInterface.h"
 
-UHoatCameraModifierFocusTactionTarget::UHoatCameraModifierFocusTactionTarget(
+UHoatCameraModifierFocusTargetActor::UHoatCameraModifierFocusTargetActor(
     const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
     : Super(ObjectInitializer)
 {
@@ -14,31 +14,31 @@ UHoatCameraModifierFocusTactionTarget::UHoatCameraModifierFocusTactionTarget(
     SnapSpeed = 50.0f;
 }
 
-bool UHoatCameraModifierFocusTactionTarget::ProcessViewRotation(class AActor* ViewTarget, float DeltaTime,
+bool UHoatCameraModifierFocusTargetActor::ProcessViewRotation(class AActor* ViewTarget, float DeltaTime,
                                                                 FRotator& OutViewRotation, FRotator& OutDeltaRot)
 {
     Super::ProcessViewRotation(ViewTarget, DeltaTime, OutViewRotation, OutDeltaRot);
 
-    // Check if we're in taction state.
+    // Check if we're selecting a target.
     if (!IsValid(ViewTarget))
     {
         return false;
     }
 
-    UTactionStateComponent* tactionState = ViewTarget->FindComponentByClass<UTactionStateComponent>();
+	ITargetingActorInterface* targetingActor = Cast<ITargetingActorInterface>(ViewTarget);
 
-    if (!IsValid(tactionState))
+    if (!targetingActor)
     {
         return false;
     }
 
-    if (!tactionState->IsTactionStateEnabled())
+    if (!targetingActor->IsSelectingTarget())
     {
         return false;
     }
 
-    // Check if there's a taction target.
-    AActor* currentTarget = tactionState->GetCurrentTarget();
+    // Check if there's a selected target.
+    AActor* currentTarget = targetingActor->GetCurrentTarget();
 
     if (IsValid(currentTarget))
     {
@@ -86,7 +86,7 @@ bool UHoatCameraModifierFocusTactionTarget::ProcessViewRotation(class AActor* Vi
         LastTarget = nullptr;
 
         // No target selected. Smoothly apply player input.
-        FVector2D targetSelectionInput = tactionState->GetCurrentTargetSelectionInput();
+        FVector2D targetSelectionInput = targetingActor->GetCurrentTargetSelectionInput();
 
         FRotator deltaRot;
         deltaRot.Yaw = targetSelectionInput.X * RotationSpeed * DeltaTime;

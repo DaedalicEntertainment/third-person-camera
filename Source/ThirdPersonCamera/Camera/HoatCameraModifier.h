@@ -2,12 +2,12 @@
 
 #include "ThirdPersonCamera.h"
 #include "Camera/CameraModifier.h"
-#include "Core/Camera/HoatCameraInfo.h"
+#include "Camera/HoatCameraInfo.h"
 #include "HoatCameraModifier.generated.h"
 
 /** Applies HOAT camera modifications over time. */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifier : public UCameraModifier
+class UHoatCameraModifier : public UCameraModifier
 {
     GENERATED_BODY()
 

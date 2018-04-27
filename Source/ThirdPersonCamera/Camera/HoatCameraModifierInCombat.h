@@ -1,12 +1,12 @@
 #pragma once
 
 #include "ThirdPersonCamera.h"
-#include "Core/Camera/HoatCameraModifier.h"
+#include "Camera/HoatCameraModifier.h"
 #include "HoatCameraModifierInCombat.generated.h"
 
 /** Applies modifications while the player is in combat. */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifierInCombat : public UHoatCameraModifier
+class UHoatCameraModifierInCombat : public UHoatCameraModifier
 {
     GENERATED_BODY()
 

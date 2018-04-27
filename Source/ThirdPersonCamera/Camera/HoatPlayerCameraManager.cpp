@@ -1,9 +1,6 @@
 #include "HoatPlayerCameraManager.h"
 
 #include "EngineUtils.h"
-#include "LevelSequence.h"
-#include "LevelSequenceActor.h"
-#include "LevelSequencePlayer.h"
 
 AHoatPlayerCameraManager::AHoatPlayerCameraManager(
     const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)

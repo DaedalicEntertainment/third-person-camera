@@ -1,12 +1,12 @@
 #pragma once
 
 #include "ThirdPersonCamera.h"
-#include "Core/Camera/HoatCameraModifier.h"
+#include "Camera/HoatCameraModifier.h"
 #include "HoatCameraModifierFocusWalkDirection.generated.h"
 
 /** Makes the camera always look in walk direction. */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifierFocusWalkDirection : public UHoatCameraModifier
+class UHoatCameraModifierFocusWalkDirection : public UHoatCameraModifier
 {
     GENERATED_BODY()
 

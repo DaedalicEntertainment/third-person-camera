@@ -3,7 +3,7 @@
 #include "Camera/PlayerCameraManager.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
-#include "Core/Camera/HoatPlayerCameraManager.h"
+#include "Camera/HoatPlayerCameraManager.h"
 
 UHoatCameraModifierKeepLineOfSightPreemptive::UHoatCameraModifierKeepLineOfSightPreemptive(
     const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)

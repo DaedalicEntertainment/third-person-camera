@@ -6,7 +6,7 @@
 
 /** Applies curves in order to modify camera properties based on its current pitch. */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifierApplyPitchCurves : public UCameraModifier
+class UHoatCameraModifierApplyPitchCurves : public UCameraModifier
 {
     GENERATED_BODY()
 

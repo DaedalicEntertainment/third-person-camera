@@ -8,7 +8,7 @@
  * Extends the default Unreal Engine spring arm camera behavior to match the specific needs of HOAT.
  */
 UCLASS(Blueprintable, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent), hideCategories = (Mobility))
-class HOAT_API UHoatCameraSpringArmComponent : public USpringArmComponent
+class UHoatCameraSpringArmComponent : public USpringArmComponent
 {
     GENERATED_BODY()
 

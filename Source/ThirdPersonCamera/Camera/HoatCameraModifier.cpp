@@ -1,8 +1,9 @@
 #include "HoatCameraModifier.h"
 
+#include "GameFramework/Pawn.h"
 #include "GameFramework/PlayerController.h"
-#include "Core/HoatPlayerCharacter.h"
-#include "Core/Camera/HoatCameraSpringArmComponent.h"
+
+#include "Camera/HoatCameraSpringArmComponent.h"
 
 UHoatCameraModifier::UHoatCameraModifier(const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
     : Super(ObjectInitializer),
@@ -20,14 +21,14 @@ bool UHoatCameraModifier::ProcessViewRotation(class AActor* ViewTarget, float De
         return false;
     }
 
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(ViewTarget);
+    APawn* pawn = Cast<APawn>(ViewTarget);
 
-    if (!IsValid(playerCharacter))
+    if (!IsValid(pawn))
     {
         return false;
     }
 
-    APlayerController* playerController = Cast<APlayerController>(playerCharacter->Controller);
+    APlayerController* playerController = Cast<APlayerController>(pawn->Controller);
 
     if (!IsValid(playerController))
     {
@@ -162,15 +163,15 @@ bool UHoatCameraModifier::PlayerHasRecentlyChangedCamera() const
 
 void UHoatCameraModifier::ApplyCameraInfo(const FHoatCameraInfo& CameraInfo, const float Factor, struct FMinimalViewInfo& InOutPOV) const
 {
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(GetViewTarget());
+	AActor* viewTarget = GetViewTarget();
 
-    if (!IsValid(playerCharacter))
+    if (!IsValid(viewTarget))
     {
         return;
     }
 
     TArray<USceneComponent*> children;
-    playerCharacter->GetRootComponent()->GetChildrenComponents(true, children);
+	viewTarget->GetRootComponent()->GetChildrenComponents(true, children);
 
     // Apply FOV.
     float appliedFOV = CameraInfo.FOV * Factor;

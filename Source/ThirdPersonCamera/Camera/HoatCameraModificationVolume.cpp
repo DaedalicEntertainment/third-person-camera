@@ -1,6 +1,6 @@
 #include "HoatCameraModificationVolume.h"
 
-#include "Core/HoatPlayerCharacter.h"
+#include "Camera/CameraActorInterface.h"
 
 AHoatCameraModificationVolume::AHoatCameraModificationVolume(
     const FObjectInitializer& ObjectInitializer /*= FObjectInitializer::Get()*/)
@@ -13,37 +13,31 @@ void AHoatCameraModificationVolume::NotifyActorBeginOverlap(AActor* Other)
 {
     Super::NotifyActorBeginOverlap(Other);
 
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(Other);
+	ICameraActorInterface* cameraActor = Cast<ICameraActorInterface>(Other);
 
-    if (!IsValid(playerCharacter))
+    if (!cameraActor)
     {
         return;
     }
 
     // Set camera modification volume.
-    playerCharacter->SetCurrentCameraModificationVolume(this);
-
-    UE_LOG(hoat, Log, TEXT("Applied camera modification volume %s for player character %s."), *GetName(),
-        *playerCharacter->GetName());
+	cameraActor->SetCurrentCameraModificationVolume(this);
 }
 
 void AHoatCameraModificationVolume::NotifyActorEndOverlap(AActor* Other)
 {
     Super::NotifyActorEndOverlap(Other);
 
-    AHoatPlayerCharacter* playerCharacter = Cast<AHoatPlayerCharacter>(Other);
+	ICameraActorInterface*  cameraActor = Cast<ICameraActorInterface>(Other);
 
-    if (!IsValid(playerCharacter))
+    if (!cameraActor)
     {
         return;
     }
 
     // Reset camera modification volume.
-    if (playerCharacter->GetCurrentCameraModificationVolume() == this)
+    if (cameraActor->GetCurrentCameraModificationVolume() == this)
     {
-        playerCharacter->SetCurrentCameraModificationVolume(nullptr);
-
-        UE_LOG(hoat, Log, TEXT("Reset camera modification volume for player character %s."),
-            *playerCharacter->GetName());
+		cameraActor->SetCurrentCameraModificationVolume(nullptr);
     }
 }

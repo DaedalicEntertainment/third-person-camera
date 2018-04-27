@@ -1,17 +1,17 @@
 #pragma once
 
 #include "ThirdPersonCamera.h"
-#include "Core/Camera/HoatCameraModifier.h"
-#include "HoatCameraModifierFocusTactionTarget.generated.h"
+#include "Camera/HoatCameraModifier.h"
+#include "HoatCameraModifierFocusTargetActor.generated.h"
 
-/** Makes the camera look in the direction of the current taction target, if there is one. */
+/** Makes the camera look in the direction of the current target actor, if there is one. */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifierFocusTactionTarget : public UHoatCameraModifier
+class UHoatCameraModifierFocusTargetActor : public UHoatCameraModifier
 {
     GENERATED_BODY()
 
 public:
-    UHoatCameraModifierFocusTactionTarget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+	UHoatCameraModifierFocusTargetActor(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 
     virtual bool ProcessViewRotation(class AActor* ViewTarget, float DeltaTime, FRotator& OutViewRotation,
                                      FRotator& OutDeltaRot) override;
@@ -25,9 +25,9 @@ private:
     UPROPERTY(Category = Custom, EditDefaultsOnly, meta = (AllowPrivateAccess = "true"))
     float SnapSpeed;
 
-    /** Taction target that was selected at the time of the previous camera update. */
+    /** Target actor that was selected at the time of the previous camera update. */
     AActor* LastTarget;
 
-    /** Desired rotation for focusing the taction target. */
+    /** Desired rotation for focusing the target actor. */
     FRotator DesiredRotation;
 };

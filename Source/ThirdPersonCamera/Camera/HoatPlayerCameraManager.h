@@ -6,7 +6,7 @@
 
 /** Defines the final view properties for the HOAT camera. */
 UCLASS(notplaceable, transient, BlueprintType, Blueprintable)
-class HOAT_API AHoatPlayerCameraManager : public APlayerCameraManager
+class AHoatPlayerCameraManager : public APlayerCameraManager
 {
     GENERATED_BODY()
 

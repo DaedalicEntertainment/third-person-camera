@@ -1,14 +1,14 @@
 #pragma once
 
 #include "ThirdPersonCamera.h"
-#include "Core/Camera/HoatCameraModifier.h"
+#include "Camera/HoatCameraModifier.h"
 #include "HoatCameraModifierApplyVolumeModifications.generated.h"
 
 class AHoatCameraModificationVolume;
 
 /** Applies modifications caused by level volumes the player enters. */
 UCLASS(BlueprintType, Blueprintable)
-class HOAT_API UHoatCameraModifierApplyVolumeModifications : public UHoatCameraModifier
+class UHoatCameraModifierApplyVolumeModifications : public UHoatCameraModifier
 {
     GENERATED_BODY()
 
