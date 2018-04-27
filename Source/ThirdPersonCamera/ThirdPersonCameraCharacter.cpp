@@ -55,6 +55,11 @@ void AThirdPersonCameraCharacter::SetCurrentCameraModificationVolume(AHoatCamera
 	CurrentCameraModificationVolume = InCurrentCameraModificationVolume;
 }
 
+bool AThirdPersonCameraCharacter::GotMovementInput() const
+{
+	return bGotForwardInput || bGotRightInput;
+}
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -114,7 +119,9 @@ void AThirdPersonCameraCharacter::LookUpAtRate(float Rate)
 
 void AThirdPersonCameraCharacter::MoveForward(float Value)
 {
-	if ((Controller != NULL) && (Value != 0.0f))
+	bGotForwardInput = (Controller != NULL) && (Value != 0.0f);
+
+	if (bGotForwardInput)
 	{
 		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -128,7 +135,9 @@ void AThirdPersonCameraCharacter::MoveForward(float Value)
 
 void AThirdPersonCameraCharacter::MoveRight(float Value)
 {
-	if ( (Controller != NULL) && (Value != 0.0f) )
+	bGotRightInput = (Controller != NULL) && (Value != 0.0f);
+
+	if (bGotRightInput)
 	{
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();

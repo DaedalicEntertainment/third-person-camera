@@ -3,10 +3,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Camera/CameraActorInterface.h"
+#include "Camera/PlayerCharacterInterface.h"
 #include "ThirdPersonCameraCharacter.generated.h"
 
 UCLASS(config=Game)
-class AThirdPersonCameraCharacter : public ACharacter, public ICameraActorInterface
+class AThirdPersonCameraCharacter : public ACharacter, public ICameraActorInterface, public IPlayerCharacterInterface
 {
 	GENERATED_BODY()
 
@@ -30,6 +31,7 @@ public:
 
 	virtual AHoatCameraModificationVolume* GetCurrentCameraModificationVolume() const override;
 	virtual void SetCurrentCameraModificationVolume(AHoatCameraModificationVolume* InCurrentCameraModificationVolume) override;
+	virtual bool GotMovementInput() const override;
 
 protected:
 
@@ -73,5 +75,8 @@ public:
 
 private:
 	AHoatCameraModificationVolume* CurrentCameraModificationVolume;
+
+	bool bGotForwardInput;
+	bool bGotRightInput;
 };
 

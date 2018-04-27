@@ -5,7 +5,7 @@ Sample code of the talk "Six Ingredients for a Dynamic Third-Person Camera" at U
 
 1. Create a HoatPlayerCameraManager blueprint and reference it in your PlayerController blueprint.
 1. Ensure you're using the HoatCameraSpringArmComponent at your Character.
-1. Implement ICameraActorInterface for your Character.
+1. Implement ICameraActorInterface and IPlayerCharacterInterface for your Character.
 
 # Camera Modification Volumes
 
@@ -16,6 +16,10 @@ Sample code of the talk "Six Ingredients for a Dynamic Third-Person Camera" at U
 
 1. Create a curve asset.
 1. Create a HoatCameraModifierApplyPitchCurves blueprint and add it to your camera manager.
+
+# Focusing Walk Directions
+
+1. Create a HoatCameraModifierFocusWalkDirection blueprint and add it to your camera manager.
 
 ##  License
 
